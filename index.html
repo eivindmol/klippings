@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tracker</title>
+
+  <!-- App-ikon -->
+  <link rel="icon" href="ikon.png" type="image/png">
+  <link rel="apple-touch-icon" href="ikon.png">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f0f0f0;
+      text-align: center;
+    }
+    .tracker {
+      background: white;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 400px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      margin-top: 0;
+    }
+    button {
+      font-size: 1.2em;
+      padding: 10px 20px;
+      margin-top: 20px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    .info {
+      font-size: 1em;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Oversikt over ting</h1>
+
+<div class="tracker">
+  <h2>Hårklipp  </h2>
+  <div class="info" id="lastClipped"></div>
+  <div class="info" id="daysSince"></div>
+  <button id="haircutButton" onclick="clipToday()">Klippet i dag</button>
+</div>
+
+<div class="tracker">
+  <h2>Dynetrekk</h2>
+  <div class="info" id="lastBeardTrim"></div>
+  <div class="info" id="daysSinceBeard"></div>
+  <button id="beardButton" onclick="trimBeardToday()">Skiftet i dag</button>
+</div>
+
+<!-- Du kan legge til flere slike trackere -->
+
+<script>
+function getStoredDate(key) {
+  return localStorage.getItem(key);
+}
+
+function setStoredDate(key, date) {
+  localStorage.setItem(key, date);
+}
+
+function formatDate(date) {
+  // Norsk datoformat: DD.MM.YYYY
+  return date.toLocaleDateString('no-NO');
+}
+
+function daysBetween(date1, date2) {
+  const diffTime = Math.abs(date2 - date1);
+  return Math.floor(diffTime / (1000 * 60 * 60 * 24));
+}
+
+function updateButtonState(buttonId, lastDateStr) {
+  const button = document.getElementById(buttonId);
+  const today = new Date();
+  
+  if (lastDateStr) {
+    const lastDate = new Date(lastDateStr);
+    if (lastDate.toDateString() === today.toDateString()) {
+      // Deaktiver knappen hvis den allerede er klikket i dag
+      button.disabled = true;
+      button.style.backgroundColor = '#cccccc'; // Grå ut knappen
+    } else {
+      // Aktiver knappen hvis det ikke er klikket i dag
+      button.disabled = false;
+      button.style.backgroundColor = '#4CAF50'; // Normal grønn farge
+    }
+  }
+}
+
+function updateHaircutDisplay() {
+  const lastDateStr = getStoredDate('lastClippedDate');
+  const lastDate = lastDateStr ? new Date(lastDateStr) : null;
+  const today = new Date();
+
+  if (lastDate) {
+    document.getElementById('lastClipped').innerText = `Sist klippet: ${formatDate(lastDate)}`;
+    document.getElementById('daysSince').innerText = `Dager siden: ${daysBetween(lastDate, today)}`;
+  } else {
+    document.getElementById('lastClipped').innerText = 'Ingen klipp registrert enda.';
+    document.getElementById('daysSince').innerText = '';
+  }
+  
+  // Oppdater knappens tilstand
+  updateButtonState('haircutButton', lastDateStr);
+}
+
+function updateBeardDisplay() {
+  const lastDateStr = getStoredDate('lastBeardTrimDate');
+  const lastDate = lastDateStr ? new Date(lastDateStr) : null;
+  const today = new Date();
+
+  if (lastDate) {
+    document.getElementById('lastBeardTrim').innerText = `Sist skiftet: ${formatDate(lastDate)}`;
+    document.getElementById('daysSinceBeard').innerText = `Dager siden: ${daysBetween(lastDate, today)}`;
+  } else {
+    document.getElementById('lastBeardTrim').innerText = 'Ingen dynetrekkskift registrert enda.';
+    document.getElementById('daysSinceBeard').innerText = '';
+  }
+  
+  // Oppdater knappens tilstand
+  updateButtonState('beardButton', lastDateStr);
+}
+
+function clipToday() {
+  const today = new Date();
+  setStoredDate('lastClippedDate', today.toISOString());
+  updateHaircutDisplay();
+}
+
+function trimBeardToday() {
+  const today = new Date();
+  setStoredDate('lastBeardTrimDate', today.toISOString());
+  updateBeardDisplay();
+}
+
+// Oppdater alt når siden lastes
+updateHaircutDisplay();
+updateBeardDisplay();
+</script>
+
+</body>
+</html>
+
