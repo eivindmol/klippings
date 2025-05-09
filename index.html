@@ -46,7 +46,7 @@
 </head>
 <body>
 
-<h1>Oversikt over ting</h1>
+<h1>Oversikt over tingggg </h1>
 
 <div class="tracker">
   <h2>Hårklipp  </h2>
@@ -62,10 +62,8 @@
   <button id="beardButton" onclick="trimBeardToday()">Skiftet i dag</button>
 </div>
 
-  <div class="tracker">
-  <h2>Nullstill</h2>
-  <button id="resetButton" onclick="resetTracker()">Nullstill alt</button>
-</div>
+  <button id="resetButton" onclick="resetTracker()" style="background-color: red; color: white; padding: 10px 20px; font-size: 1.2em; border: none; border-radius: 5px; margin-top: 20px;">Nullstill alt</button>
+
 
 <!-- Du kan legge til flere slike trackere -->
 
@@ -163,9 +161,21 @@ updateBeardDisplay();
 function resetTracker() {
   localStorage.removeItem('lastClippedDate');
   localStorage.removeItem('lastBeardTrimDate');
+  
+  // Oppdater visningen
   updateHaircutDisplay();
   updateBeardDisplay();
+  
+  // Aktiver knappene igjen manuelt
+  const haircutButton = document.getElementById('haircutButton');
+  haircutButton.disabled = false;
+  haircutButton.style.backgroundColor = '#4CAF50';
+  
+  const beardButton = document.getElementById('beardButton');
+  beardButton.disabled = false;
+  beardButton.style.backgroundColor = '#4CAF50';
 }
+
 </script>
 
 </body>
