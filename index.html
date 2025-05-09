@@ -115,7 +115,7 @@ function updateHaircutDisplay() {
 
   if (lastDate) {
     document.getElementById('lastClipped').innerText = `Sist klippet: ${formatDate(lastDate)}`;
-    document.getElementById('daysSince').innerText = `Dager siden: ${daysBetween(lastDate, today)}`;
+    document.getElementById('daysSince').innerText = `Dager siden forrige klipp: ${daysBetween(lastDate, today)}`;
   } else {
     document.getElementById('lastClipped').innerText = 'Ingen klipp registrert enda.';
     document.getElementById('daysSince').innerText = '';
@@ -132,7 +132,7 @@ function updateBeardDisplay() {
 
   if (lastDate) {
     document.getElementById('lastBeardTrim').innerText = `Sist skiftet: ${formatDate(lastDate)}`;
-    document.getElementById('daysSinceBeard').innerText = `Dager siden: ${daysBetween(lastDate, today)}`;
+    document.getElementById('daysSinceBeard').innerText = `Dager siden forrige skift: ${daysBetween(lastDate, today)}`;
   } else {
     document.getElementById('lastBeardTrim').innerText = 'Ingen dynetrekkskift registrert enda.';
     document.getElementById('daysSinceBeard').innerText = '';
