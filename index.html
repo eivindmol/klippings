@@ -62,6 +62,11 @@
   <button id="beardButton" onclick="trimBeardToday()">Skiftet i dag</button>
 </div>
 
+  <div class="tracker">
+  <h2>Nullstill</h2>
+  <button id="resetButton" onclick="resetTracker()">Nullstill alt</button>
+</div>
+
 <!-- Du kan legge til flere slike trackere -->
 
 <script>
@@ -154,6 +159,13 @@ function trimBeardToday() {
 // Oppdater alt når siden lastes
 updateHaircutDisplay();
 updateBeardDisplay();
+
+function resetTracker() {
+  localStorage.removeItem('lastClippedDate');
+  localStorage.removeItem('lastBeardTrimDate');
+  updateHaircutDisplay();
+  updateBeardDisplay();
+}
 </script>
 
 </body>
