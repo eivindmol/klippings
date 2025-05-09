@@ -79,8 +79,12 @@ function formatDate(date) {
 }
 
 function daysBetween(date1, date2) {
-  const diffTime = Math.abs(date2 - date1);
-  return Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  // Konverter til midnatt for å få nøyaktig antall dager
+  const d1 = new Date(date1.getFullYear(), date1.getMonth(), date1.getDate());
+  const d2 = new Date(date2.getFullYear(), date2.getMonth(), date2.getDate());
+  const diffTime = Math.abs(d2 - d1);
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  return diffDays;
 }
 
 function updateButtonState(buttonId, lastDateStr) {
@@ -154,4 +158,6 @@ updateBeardDisplay();
 
 </body>
 </html>
+
+
 
