@@ -145,4 +145,5 @@
       beardButton.style.backgroundColor = '#4CAF50';
     }
 
-  </script>
+</script>
+
