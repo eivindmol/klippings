@@ -116,8 +116,10 @@ function updateHaircutDisplay() {
   const today = new Date();
 
   if (lastDate) {
-    document.getElementById('lastClipped').innerText = `Sist klippet: ${formatDate(lastDate)}`;
-    document.getElementById('daysSince').innerText = `Dager siden forrige klipp: ${daysBetween(lastDate, today)}`;
+    const days = daysBetween(lastDate, today);
+document.getElementById('lastClipped').innerText = `Sist klippet: ${formatDate(lastDate)} (${days} dager siden)`;
+document.getElementById('daysSince').innerText = ''; // Tøm denne
+
     
     const nextDate = new Date(lastDate);
     nextDate.setDate(nextDate.getDate() + 3);
@@ -138,8 +140,10 @@ function updateBeardDisplay() {
   const today = new Date();
 
   if (lastDate) {
-    document.getElementById('lastBeardTrim').innerText = `Sist skiftet: ${formatDate(lastDate)}`;
-    document.getElementById('daysSinceBeard').innerText = `Dager siden forrige skift: ${daysBetween(lastDate, today)}`;
+    const days = daysBetween(lastDate, today);
+document.getElementById('lastBeardTrim').innerText = `Sist skiftet: ${formatDate(lastDate)} (${days} dager siden)`;
+document.getElementById('daysSinceBeard').innerText = ''; // Tøm denne
+
     
     const nextDate = new Date(lastDate);
     nextDate.setDate(nextDate.getDate() + 3);
