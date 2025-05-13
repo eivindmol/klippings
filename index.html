@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Klippings</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oversikt over ting</title>
 
-  <!-- App-ikon -->
-  <link rel="icon" href="ikon.png" type="image/png">
-  <link rel="apple-touch-icon" href="ikon.png">
+  <link rel="icon" href="ikon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="ikon.png" />
 
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+
+  <!-- Ekstern CSS -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-
-  <h1>Oversikt over tingS</h1>
+  <h1>Oversikt over ting</h1>
 
   <div class="tracker">
     <h2>Hårklipp</h2>
     <div class="info" id="lastClipped"></div>
     <div class="info" id="daysSince"></div>
-    <div class="info" id="nextHaircut"></div> <!-- NY LINJE -->
+    <div class="info" id="nextHaircut"></div>
     <button id="haircutButton" onclick="clipToday()">Klippet i dag</button>
   </div>
 
@@ -27,21 +30,19 @@
     <h2>Dynetrekk</h2>
     <div class="info" id="lastBeardTrim"></div>
     <div class="info" id="daysSinceBeard"></div>
-    <div class="info" id="nextBeardTrim"></div> <!-- NY LINJE -->
+    <div class="info" id="nextBeardTrim"></div>
     <button id="beardButton" onclick="trimBeardToday()">Skiftet i dag</button>
   </div>
 
   <div class="tracker">
     <h2>Dagens strekk</h2>
-    <div class="info" id="stretchStatus"></div> <!-- Ny linje for strekkstatus -->
+    <div class="info" id="stretchStatus"></div>
     <button id="stretchButton" onclick="stretchToday()">Gjort i dag</button>
   </div>
 
-  <button id="resetButton" onclick="resetTracker()" style="background-color: red; color: white; padding: 10px 20px; font-size: 1.2em; border: none; border-radius: 5px; margin-top: 20px;">Nullstill alt</button>
+  <button id="resetButton" onclick="resetTracker()">Nullstill alt</button>
 
-  <!-- Du kan legge til flere slike trackere -->
-
-  <scipt>
-
+  <!-- Ekstern JavaScript -->
+  <script src="script.js"></script>
 </body>
 </html>
