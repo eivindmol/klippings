@@ -64,12 +64,50 @@
   <button id="beardButton" onclick="trimBeardToday()">Skiftet i dag</button>
 </div>
 
+  <div class="tracker">
+  <h2>Dagens strekk</h2>
+  <div class="info" id="stretchStatus"></div> <!-- Ny linje for strekkstatus -->
+  <button id="stretchButton" onclick="stretchToday()">Gjort i dag</button>
+</div>
+
+  
   <button id="resetButton" onclick="resetTracker()" style="background-color: red; color: white; padding: 10px 20px; font-size: 1.2em; border: none; border-radius: 5px; margin-top: 20px;">Nullstill alt</button>
 
 
 <!-- Du kan legge til flere slike trackere -->
 
 <script>
+
+function getStretchStatus() {
+  return localStorage.getItem('stretchStatus');
+}
+
+function setStretchStatus(status) {
+  localStorage.setItem('stretchStatus', status);
+}
+
+function updateStretchDisplay() {
+  const status = getStretchStatus();
+
+  if (status === 'done') {
+    document.getElementById('stretchStatus').innerText = "Dagens strekk gjennomført. Husk å gjøre det i morgen også.";
+    document.getElementById('stretchButton').disabled = true;
+    document.getElementById('stretchButton').style.backgroundColor = '#cccccc'; // Grå ut knappen
+  } else {
+    document.getElementById('stretchStatus').innerText = "Ingen strekk registrert enda.";
+    document.getElementById('stretchButton').disabled = false;
+    document.getElementById('stretchButton').style.backgroundColor = '#4CAF50'; // Normal grønn farge
+  }
+}
+
+function stretchToday() {
+  setStretchStatus('done');
+  updateStretchDisplay();
+}
+
+
+
+  
 function getStoredDate(key) {
   return localStorage.getItem(key);
 }
