@@ -1,5 +1,3 @@
-
-<script>
     // Funksjonene for lokal lagring og oppdatering av klippinger, etc.
 
     function getStretchStatus() {
@@ -143,7 +141,5 @@
       const beardButton = document.getElementById('beardButton');
       beardButton.disabled = false;
       beardButton.style.backgroundColor = '#4CAF50';
-    }
-
-</script>
+    }    
 
