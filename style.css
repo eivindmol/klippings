@@ -8,7 +8,7 @@
       text-align: center;
       color: #333;
     }
-
+</style>
     /* Tracker bokser */
     .tracker {
       background: #fff;
@@ -74,5 +74,4 @@ button:disabled {
 
     /* Google Font import */
     @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&family=Poppins:wght@400&display=swap');
-  </style>
 </head>
