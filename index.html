@@ -50,38 +50,35 @@
     /* Knappene */
     button {
       button {
-  font-family: inherit;
-  background-color: #38A169; /* Grønn fra bildet */
+  background-color: #4CAF50;
   color: white;
-  padding: 10px 25px;
-  font-weight: bold;
+  padding: 12px 24px;
   font-size: 1em;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   margin-top: 20px;
-      }
+  transition: background-color 0.3s, transform 0.1s, box-shadow 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
+button:hover:not(:disabled) {
+  background-color: #3e9e44;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
 
-    button:hover {
-      background-color: #45a049;
-      transform: scale(1.05);
-      box-shadow: 0 4px 8px rgba(0, 128, 0, 0.2);
-  
-    }
+button:active:not(:disabled) {
+  transform: scale(0.96);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
 
-    button:disabled {
-      background-color: #ccc;
-      color: white;
-      cursor: not-allowed;
-    }
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}
 
-    /* Info-teksten */
-    .info {
-      font-size: 1.1em;
-      color: #4A5568; /* Mørk grå farge som matcher bakgrunnen */
-      margin-top: 15px;
-    }
     }
       
 
