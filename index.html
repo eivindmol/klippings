@@ -49,25 +49,31 @@
 
     /* Knappene */
     button {
-      background-color: #4CAF50;
-      color: white;
-      padding: 15px 30px;
-      font-size: 1.2em;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s, transform 0.3s;
-      margin-top: 20px;
-    }
+      button {
+  font-family: inherit;
+  background-color: #38A169; /* Grønn fra bildet */
+  color: white;
+  padding: 10px 25px;
+  font-weight: bold;
+  font-size: 1em;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 20px;
+      }
+
 
     button:hover {
       background-color: #45a049;
       transform: scale(1.05);
       box-shadow: 0 4px 8px rgba(0, 128, 0, 0.2);
+  
     }
 
     button:disabled {
-      background-color: #cccccc;
+      background-color: #ccc;
+      color: white;
+      cursor: not-allowed;
     }
 
     /* Info-teksten */
@@ -76,6 +82,8 @@
       color: #4A5568; /* Mørk grå farge som matcher bakgrunnen */
       margin-top: 15px;
     }
+    }
+      
 
     /* Google Font import */
     @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&family=Poppins:wght@400&display=swap');
