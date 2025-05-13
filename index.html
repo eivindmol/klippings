@@ -52,6 +52,7 @@
   <h2>Hårklipp  </h2>
   <div class="info" id="lastClipped"></div>
   <div class="info" id="daysSince"></div>
+  <div class="info" id="nextHaircut"></div> <!-- NY LINJE -->
   <button id="haircutButton" onclick="clipToday()">Klippet i dag</button>
 </div>
 
@@ -59,6 +60,7 @@
   <h2>Dynetrekk</h2>
   <div class="info" id="lastBeardTrim"></div>
   <div class="info" id="daysSinceBeard"></div>
+  <div class="info" id="nextBeardTrim"></div> <!-- NY LINJE -->
   <button id="beardButton" onclick="trimBeardToday()">Skiftet i dag</button>
 </div>
 
@@ -116,14 +118,19 @@ function updateHaircutDisplay() {
   if (lastDate) {
     document.getElementById('lastClipped').innerText = `Sist klippet: ${formatDate(lastDate)}`;
     document.getElementById('daysSince').innerText = `Dager siden forrige klipp: ${daysBetween(lastDate, today)}`;
+    
+    const nextDate = new Date(lastDate);
+    nextDate.setDate(nextDate.getDate() + 3);
+    document.getElementById('nextHaircut').innerText = `Neste klipp bør være: ${formatDate(nextDate)}`;
   } else {
     document.getElementById('lastClipped').innerText = 'Ingen klipp registrert enda.';
     document.getElementById('daysSince').innerText = '';
+    document.getElementById('nextHaircut').innerText = '';
   }
   
-  // Oppdater knappens tilstand
   updateButtonState('haircutButton', lastDateStr);
 }
+
 
 function updateBeardDisplay() {
   const lastDateStr = getStoredDate('lastBeardTrimDate');
@@ -133,14 +140,19 @@ function updateBeardDisplay() {
   if (lastDate) {
     document.getElementById('lastBeardTrim').innerText = `Sist skiftet: ${formatDate(lastDate)}`;
     document.getElementById('daysSinceBeard').innerText = `Dager siden forrige skift: ${daysBetween(lastDate, today)}`;
+    
+    const nextDate = new Date(lastDate);
+    nextDate.setDate(nextDate.getDate() + 3);
+    document.getElementById('nextBeardTrim').innerText = `Neste skift bør være: ${formatDate(nextDate)}`;
   } else {
     document.getElementById('lastBeardTrim').innerText = 'Ingen dynetrekkskift registrert enda.';
     document.getElementById('daysSinceBeard').innerText = '';
+    document.getElementById('nextBeardTrim').innerText = '';
   }
   
-  // Oppdater knappens tilstand
   updateButtonState('beardButton', lastDateStr);
 }
+
 
 function clipToday() {
   const today = new Date();
