@@ -38,10 +38,10 @@ h1 {
   align-items: center;
 }
 
-.task-box:hover {
+/*.task-box:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-}
+}*/
 
 .task-box p {
   margin: 10px 0;
