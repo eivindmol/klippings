@@ -1,41 +1,42 @@
 
-    /* Generell stil */
-    body {
-      font-family: 'Courier New', Courier, monospace;
-      background: #CBD5E0; /* Grå-blå */
-      padding: 40px;
-      text-align: center;
-      color: #333;
-    }
+   /* Generell stil for hele siden */
+body {
+  font-family: 'Courier New', Courier, monospace;
+  background: #E5E5E5; /* Lys grå bakgrunn */
+  padding: 40px;
+  text-align: center;
+  color: #333;
+}
 
-   
-/* Tracker bokser */
-    .tracker {
-      background: #fff;
-      border-radius: 10px;
-      padding: 20px;
-      margin: 40px auto;
-      max-width: 400px;
-      box-shadow: 2px 2px 3px rgba(0,0,0,0.2);
-    }
+/* Stil for boksene */
+.tracker {
+  background: #FFFFFF; /* Hvit bakgrunn */
+  border: 1px solid #000; /* Tynn svart kant */
+  border-radius: 10px; /* Myke hjørner */
+  padding: 20px;
+  margin: 40px auto;
+  max-width: 400px;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1); /* Drop shadow */
+}
 
-    .tracker:hover {
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* Mer intens skygge på hover */
-    }
+/* Hover-effekt for boksene */
+.tracker:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* Mer intens skygge på hover */
+}
 
-    /* Overskrifter */
-    h1 {
-      font-family: 'Roboto Slab', serif;  /* Distinkt font for h1 */
-      font-size: 2.5em;
-      color: #2D3748; /* Mørkere farge for overskriften */
-      margin-bottom: 30px;
-    }
+/* Overskrifter */
+h1 {
+  font-family: 'Roboto Slab', serif; /* Distinkt font for h1 */
+  font-size: 2.5em;
+  color: #2D3748; /* Mørkere farge for overskriften */
+  margin-bottom: 30px;
+}
 
-    h2 {
-      font-size: 2em;
-      color: #2B6CB0; /* Mørk blå farge som matcher bakgrunnen */
-      margin-bottom: 10px;
-    }
+h2 {
+  font-size: 2em;
+  color: #2B6CB0; /* Mørk blå farge som matcher bakgrunnen */
+  margin-bottom: 10px;
+}
 
     /* Knappene */
     button {
