@@ -106,7 +106,7 @@ button[onclick="resetTracker()"]:hover {
 
   .task-box {
     padding: 15px;
-    margin: 10px auto;
+    margin: 25px auto;
   }
 
   .task-box p {
