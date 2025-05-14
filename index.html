@@ -1,48 +1,32 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Oversikt over ting</title>
-
-  <link rel="icon" href="ikon.png" type="image/png" />
-  <link rel="apple-touch-icon" href="ikon.png" />
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
-
-  <!-- Ekstern CSS -->
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Vedlikehold</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Om du har CSS -->
 </head>
-
 <body>
-  <h1>Oversikt over tingS</h1>
 
-  <div class="tracker">
-    <h2>Hårklipp</h2>
-    <div class="info" id="lastClipped"></div>
-    <div class="info" id="daysSince"></div>
-    <div class="info" id="nextHaircut"></div>
-    <button id="haircutButton" onclick="clipToday()">Klippet i dag</button>
+  <div class="task-box">
+    <p id="lastClipped">Ingen klipp registrert enda.</p>
+    <p id="nextHaircut"></p>
+    <button id="haircutButton" class="green" onclick="clipToday()">Klipp i dag</button>
   </div>
 
-  <div class="tracker">
-    <h2>Dynetrekk</h2>
-    <div class="info" id="lastDuvetChange"></div>
-    <div class="info" id="daysSinceDuvetChange"></div>
-    <div class="info" id="nextDuvetChange"></div>
-    <button id="beardButton" onclick="trimBeardToday()">Skiftet i dag</button>
+  <div class="task-box">
+    <p id="lastBeardTrim">Ingen dynetrekkskift registrert enda.</p>
+    <p id="nextBeardTrim"></p>
+    <button id="beardButton" class="green" onclick="trimBeardToday()">Skift dynetrekk i dag</button>
   </div>
 
-  <div class="tracker">
-    <h2>Dagens strekk</h2>
-    <div class="info" id="stretchStatus"></div>
-    <button id="stretchButton" onclick="stretchToday()">Gjort i dag</button>
+  <div class="task-box">
+    <p id="stretchStatus">Ingen strekk registrert enda.</p>
+    <button id="stretchButton" class="green" onclick="stretchToday()">Gjennomfør dagens strekk</button>
   </div>
 
-  <button id="resetButton" onclick="resetTracker()">Nullstill alt</button>
+  <button onclick="resetTracker()">Nullstill alt</button>
 
-  <!-- Ekstern JavaScript -->
+  <!-- Koble til din JavaScript-fil -->
   <script src="script.js"></script>
 </body>
 </html>
