@@ -61,7 +61,7 @@ function updateHaircutDisplay() {
     
     if (lastHaircut) {
         const lastDate = new Date(lastHaircut);
-        const nextDate = calculateNextDate(lastDate, 30); // 30 dager mellom hårklipp
+        const nextDate = calculateNextDate(lastDate, 3); // 30 dager mellom hårklipp
         
         lastClippedElement.textContent = `Sist klippet: ${formatDate(lastDate)}`;
         lastClippedElement.style.color = '#000000';
@@ -89,7 +89,7 @@ function updateBeardDisplay() {
     
     if (lastBeardTrim) {
         const lastDate = new Date(lastBeardTrim);
-        const nextDate = calculateNextDate(lastDate, 7); // 7 dager mellom dynetrekk
+        const nextDate = calculateNextDate(lastDate, 14); // 7 dager mellom dynetrekk
         
         lastBeardElement.textContent = `Sist skiftet dynetrekk: ${formatDate(lastDate)}`;
         lastBeardElement.style.color = '#000000';
@@ -116,11 +116,18 @@ function updateStretchDisplay() {
     
     if (lastStretch) {
         const lastDate = new Date(lastStretch);
-        stretchStatusElement.textContent = `Sist strekket: ${formatDate(lastDate)}`;
-        stretchStatusElement.style.color = '#000000';
+        const today = new Date();
+        
+        // Sjekk om det er samme dag
+        if (lastDate.getDate() === today.getDate() &&
+            lastDate.getMonth() === today.getMonth() &&
+            lastDate.getFullYear() === today.getFullYear()) {
+            stretchStatusElement.textContent = 'Bra, dette er gjort i dag. Husk å gjøre det igjen i morgen';
+        } else {
+            stretchStatusElement.textContent = `Sist strekket: ${formatDate(lastDate)}`;
+        }
     } else {
         stretchStatusElement.textContent = 'Ingen strekk registrert enda.';
-        stretchStatusElement.style.color = '#45AC35';
     }
 }
 
