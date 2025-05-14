@@ -5,19 +5,20 @@
 body {
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
-  padding: 40px;
+  padding: 20px;
   text-align: center;
   color: #2d3436;
   min-height: 100vh;
   margin: 0;
+  box-sizing: border-box;
 }
 
 /* Overskrift */
 h1 {
   font-family: 'Roboto Slab', serif;
-  font-size: 2.5em;
+  font-size: 2em;
   color: #2d3436;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 /* Boksene */
@@ -25,8 +26,9 @@ h1 {
   background: #ffffff;
   border: 2px solid #2d3436;
   border-radius: 16px;
-  padding: 24px;
-  margin: 20px auto;
+  padding: 20px;
+  margin: 15px auto;
+  width: 90%;
   max-width: 500px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -39,7 +41,7 @@ h1 {
 
 .task-box p {
   margin: 10px 0;
-  font-size: 1.1em;
+  font-size: 1em;
   color: #636e72;
 }
 
@@ -47,7 +49,7 @@ h1 {
 button {
   background-color: #45AC35;
   color: white;
-  padding: 12px 24px;
+  padding: 12px 20px;
   font-size: 1em;
   font-weight: 600;
   border: none;
@@ -56,6 +58,8 @@ button {
   margin: 10px 5px;
   transition: all 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 300px;
 }
 
 button:hover:not(:disabled) {
@@ -83,4 +87,30 @@ button[onclick="resetTracker()"] {
 
 button[onclick="resetTracker()"]:hover {
   background-color: #c0392b;
+}
+
+/* Media queries for responsivt design */
+@media screen and (max-width: 480px) {
+  body {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+  }
+
+  .task-box {
+    padding: 15px;
+    margin: 10px auto;
+  }
+
+  .task-box p {
+    font-size: 0.9em;
+  }
+
+  button {
+    padding: 10px 16px;
+    font-size: 0.9em;
+  }
 }   
