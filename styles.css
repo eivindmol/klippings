@@ -1,49 +1,46 @@
+/* Import av Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&family=Poppins:wght@400;700&display=swap');
 
-   /* Generell stil for hele siden */
+/* Bakgrunn og kropp */
 body {
-  font-family: 'Courier New', Courier, monospace;
-  background: #E5E5E5; /* Lys grå bakgrunn */
+  font-family: 'Poppins', sans-serif;
+  background: #111; /* Mørk bakgrunn */
   padding: 40px;
   text-align: center;
   color: #333;
 }
 
-/* Stil for boksene */
-.tracker {
-  background: #FFFFFF; /* Hvit bakgrunn */
-  border: 1px solid #000; /* Tynn svart kant */
-  border-radius: 10px; /* Myke hjørner */
-  padding: 20px;
-  margin: 40px auto;
-  max-width: 400px;
-  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1); /* Drop shadow */
-}
-
-/* Hover-effekt for boksene */
-.tracker:hover {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* Mer intens skygge på hover */
-}
-
-/* Overskrifter */
+/* Overskrift */
 h1 {
-  font-family: 'Roboto Slab', serif; /* Distinkt font for h1 */
-  font-size: 2.5em;
-  color: #2D3748; /* Mørkere farge for overskriften */
-  margin-bottom: 30px;
+  font-family: 'Roboto Slab', serif;
+  font-size: 3em;
+  color: #000;
+  margin-bottom: 40px;
 }
 
-h2 {
-  font-size: 2em;
-  color: #2B6CB0; /* Mørk blå farge som matcher bakgrunnen */
-  margin-bottom: 10px;
+/* Boksene */
+.tracker {
+  background: #fff;
+  border: 1px solid #aaa;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 40px auto;
+  max-width: 500px;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-    /* Knappene */
-    button {
+.tracker:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* Knappene */
+button {
   background-color: #4CAF50;
   color: white;
-  padding: 12px 24px;
+  padding: 12px 28px;
   font-size: 1em;
+  font-weight: bold;
+  text-transform: uppercase;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -68,9 +65,3 @@ button:disabled {
   cursor: not-allowed;
   box-shadow: none;
 }
-
-    }
-      
-
-    /* Google Font import */
-    @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&family=Poppins:wght@400&display=swap');
