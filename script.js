@@ -1,99 +1,107 @@
+// Funksjoner for å lagre og hente data fra localStorage
+function saveData(key, value) {
+    localStorage.setItem(key, value);
+}
+
+function getData(key) {
+    return localStorage.getItem(key);
+}
+
+// Funksjoner for å formatere datoer
 function formatDate(date) {
-  return date.toLocaleDateString('no-NO');
+    return date.toLocaleDateString('no-NO', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
 }
 
-function daysBetween(date1, date2) {
-  const d1 = new Date(date1.getFullYear(), date1.getMonth(), date1.getDate());
-  const d2 = new Date(date2.getFullYear(), date2.getMonth(), date2.getDate());
-  return Math.ceil((d2 - d1) / (1000 * 60 * 60 * 24));
+function calculateNextDate(lastDate, days) {
+    const nextDate = new Date(lastDate);
+    nextDate.setDate(nextDate.getDate() + days);
+    return nextDate;
 }
 
-function disableButton(buttonId) {
-  const button = document.getElementById(buttonId);
-  button.disabled = true;
-  button.classList.remove('green');
-  button.classList.add('gray');
-}
-
-function enableButton(buttonId) {
-  const button = document.getElementById(buttonId);
-  button.disabled = false;
-  button.classList.remove('gray');
-  button.classList.add('green');
-}
-
+// Hårklipp funksjoner
 function clipToday() {
-  const today = new Date().toISOString();
-  localStorage.setItem('lastClippedDate', today);
-  updateHaircutDisplay();
-}
-
-function trimBeardToday() {
-  const today = new Date().toISOString();
-  localStorage.setItem('lastBeardTrimDate', today);
-  updateBeardDisplay();
-}
-
-function stretchToday() {
-  localStorage.setItem('stretchStatus', 'done');
-  updateStretchDisplay();
+    const today = new Date();
+    saveData('lastHaircut', today.toISOString());
+    updateHaircutDisplay();
 }
 
 function updateHaircutDisplay() {
-  const dateStr = localStorage.getItem('lastClippedDate');
-  if (dateStr) {
-    const date = new Date(dateStr);
-    const days = daysBetween(date, new Date());
-    document.getElementById('lastClipped').innerText = `Sist klippet: ${formatDate(date)} (${days} dager siden)`;
-    const next = new Date(date);
-    next.setDate(next.getDate() + 3);
-    document.getElementById('nextHaircut').innerText = `Neste klipp bør være: ${formatDate(next)}`;
-    disableButton('haircutButton');
-  } else {
-    document.getElementById('lastClipped').innerText = 'Ingen klipp registrert enda.';
-    document.getElementById('nextHaircut').innerText = '';
-    enableButton('haircutButton');
-  }
+    const lastHaircut = getData('lastHaircut');
+    const lastClippedElement = document.getElementById('lastClipped');
+    const nextHaircutElement = document.getElementById('nextHaircut');
+    
+    if (lastHaircut) {
+        const lastDate = new Date(lastHaircut);
+        const nextDate = calculateNextDate(lastDate, 30); // 30 dager mellom hårklipp
+        
+        lastClippedElement.textContent = `Sist klippet: ${formatDate(lastDate)}`;
+        nextHaircutElement.textContent = `Neste klipp: ${formatDate(nextDate)}`;
+    } else {
+        lastClippedElement.textContent = 'Ingen klipp registrert enda.';
+        nextHaircutElement.textContent = '';
+    }
+}
+
+// Dynetrekk funksjoner
+function trimBeardToday() {
+    const today = new Date();
+    saveData('lastBeardTrim', today.toISOString());
+    updateBeardDisplay();
 }
 
 function updateBeardDisplay() {
-  const dateStr = localStorage.getItem('lastBeardTrimDate');
-  if (dateStr) {
-    const date = new Date(dateStr);
-    const days = daysBetween(date, new Date());
-    document.getElementById('lastBeardTrim').innerText = `Sist skiftet: ${formatDate(date)} (${days} dager siden)`;
-    const next = new Date(date);
-    next.setDate(next.getDate() + 3);
-    document.getElementById('nextBeardTrim').innerText = `Neste skift bør være: ${formatDate(next)}`;
-    disableButton('beardButton');
-  } else {
-    document.getElementById('lastBeardTrim').innerText = 'Ingen dynetrekkskift registrert enda.';
-    document.getElementById('nextBeardTrim').innerText = '';
-    enableButton('beardButton');
-  }
+    const lastBeardTrim = getData('lastBeardTrim');
+    const lastBeardElement = document.getElementById('lastBeardTrim');
+    const nextBeardElement = document.getElementById('nextBeardTrim');
+    
+    if (lastBeardTrim) {
+        const lastDate = new Date(lastBeardTrim);
+        const nextDate = calculateNextDate(lastDate, 7); // 7 dager mellom dynetrekk
+        
+        lastBeardElement.textContent = `Sist skiftet dynetrekk: ${formatDate(lastDate)}`;
+        nextBeardElement.textContent = `Neste dynetrekk: ${formatDate(nextDate)}`;
+    } else {
+        lastBeardElement.textContent = 'Ingen dynetrekkskift registrert enda.';
+        nextBeardElement.textContent = '';
+    }
+}
+
+// Strekk funksjoner
+function stretchToday() {
+    const today = new Date();
+    saveData('lastStretch', today.toISOString());
+    updateStretchDisplay();
 }
 
 function updateStretchDisplay() {
-  const status = localStorage.getItem('stretchStatus');
-  if (status === 'done') {
-    document.getElementById('stretchStatus').innerText = "Dagens strekk gjennomført. Husk å gjøre det i morgen også.";
-    disableButton('stretchButton');
-  } else {
-    document.getElementById('stretchStatus').innerText = "Ingen strekk registrert enda.";
-    enableButton('stretchButton');
-  }
+    const lastStretch = getData('lastStretch');
+    const stretchStatusElement = document.getElementById('stretchStatus');
+    
+    if (lastStretch) {
+        const lastDate = new Date(lastStretch);
+        stretchStatusElement.textContent = `Sist strekket: ${formatDate(lastDate)}`;
+    } else {
+        stretchStatusElement.textContent = 'Ingen strekk registrert enda.';
+    }
 }
 
+// Reset funksjon
 function resetTracker() {
-  localStorage.clear();
-  updateHaircutDisplay();
-  updateBeardDisplay();
-  updateStretchDisplay();
+    if (confirm('Er du sikker på at du vil nullstille alt?')) {
+        localStorage.clear();
+        updateHaircutDisplay();
+        updateBeardDisplay();
+        updateStretchDisplay();
+    }
 }
 
-// Kjør når siden lastes
-window.onload = () => {
-  updateHaircutDisplay();
-  updateBeardDisplay();
-  updateStretchDisplay();
-};
+// Initialiser visning når siden lastes
+document.addEventListener('DOMContentLoaded', () => {
+    updateHaircutDisplay();
+    updateBeardDisplay();
+    updateStretchDisplay();
+});
