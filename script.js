@@ -22,11 +22,36 @@ function calculateNextDate(lastDate, days) {
     return nextDate;
 }
 
+// Funksjon for å sjekke om en knapp skal være deaktivert
+function shouldDisableButton(lastActionDate) {
+    if (!lastActionDate) return false;
+    
+    const lastDate = new Date(lastActionDate);
+    const now = new Date();
+    
+    // Sjekk om det er samme dag
+    return lastDate.getDate() === now.getDate() &&
+           lastDate.getMonth() === now.getMonth() &&
+           lastDate.getFullYear() === now.getFullYear();
+}
+
+// Funksjon for å oppdatere knappenes tilstand
+function updateButtonStates() {
+    const lastHaircut = getData('lastHaircut');
+    const lastBeardTrim = getData('lastBeardTrim');
+    const lastStretch = getData('lastStretch');
+    
+    document.getElementById('haircutButton').disabled = shouldDisableButton(lastHaircut);
+    document.getElementById('beardButton').disabled = shouldDisableButton(lastBeardTrim);
+    document.getElementById('stretchButton').disabled = shouldDisableButton(lastStretch);
+}
+
 // Hårklipp funksjoner
 function clipToday() {
     const today = new Date();
     saveData('lastHaircut', today.toISOString());
     updateHaircutDisplay();
+    updateButtonStates();
 }
 
 function updateHaircutDisplay() {
@@ -39,9 +64,12 @@ function updateHaircutDisplay() {
         const nextDate = calculateNextDate(lastDate, 30); // 30 dager mellom hårklipp
         
         lastClippedElement.textContent = `Sist klippet: ${formatDate(lastDate)}`;
+        lastClippedElement.style.color = '#000000';
         nextHaircutElement.textContent = `Neste klipp: ${formatDate(nextDate)}`;
+        nextHaircutElement.style.color = '#000000';
     } else {
         lastClippedElement.textContent = 'Ingen klipp registrert enda.';
+        lastClippedElement.style.color = '#45AC35';
         nextHaircutElement.textContent = '';
     }
 }
@@ -51,6 +79,7 @@ function trimBeardToday() {
     const today = new Date();
     saveData('lastBeardTrim', today.toISOString());
     updateBeardDisplay();
+    updateButtonStates();
 }
 
 function updateBeardDisplay() {
@@ -63,9 +92,12 @@ function updateBeardDisplay() {
         const nextDate = calculateNextDate(lastDate, 7); // 7 dager mellom dynetrekk
         
         lastBeardElement.textContent = `Sist skiftet dynetrekk: ${formatDate(lastDate)}`;
+        lastBeardElement.style.color = '#000000';
         nextBeardElement.textContent = `Neste dynetrekk: ${formatDate(nextDate)}`;
+        nextBeardElement.style.color = '#000000';
     } else {
         lastBeardElement.textContent = 'Ingen dynetrekkskift registrert enda.';
+        lastBeardElement.style.color = '#45AC35';
         nextBeardElement.textContent = '';
     }
 }
@@ -75,6 +107,7 @@ function stretchToday() {
     const today = new Date();
     saveData('lastStretch', today.toISOString());
     updateStretchDisplay();
+    updateButtonStates();
 }
 
 function updateStretchDisplay() {
@@ -84,8 +117,10 @@ function updateStretchDisplay() {
     if (lastStretch) {
         const lastDate = new Date(lastStretch);
         stretchStatusElement.textContent = `Sist strekket: ${formatDate(lastDate)}`;
+        stretchStatusElement.style.color = '#000000';
     } else {
         stretchStatusElement.textContent = 'Ingen strekk registrert enda.';
+        stretchStatusElement.style.color = '#45AC35';
     }
 }
 
@@ -96,6 +131,7 @@ function resetTracker() {
         updateHaircutDisplay();
         updateBeardDisplay();
         updateStretchDisplay();
+        updateButtonStates();
     }
 }
 
@@ -104,4 +140,8 @@ document.addEventListener('DOMContentLoaded', () => {
     updateHaircutDisplay();
     updateBeardDisplay();
     updateStretchDisplay();
+    updateButtonStates();
+    
+    // Sjekk knappenes tilstand hvert minutt
+    setInterval(updateButtonStates, 60000);
 });
