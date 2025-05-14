@@ -4,64 +4,84 @@
 /* Bakgrunn og kropp */
 body {
   font-family: 'Poppins', sans-serif;
-  background: #ECECEC; /* Mørk bakgrunn */
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
   padding: 40px;
   text-align: center;
-  color: #333;
+  color: #2d3436;
+  min-height: 100vh;
+  margin: 0;
 }
 
 /* Overskrift */
 h1 {
   font-family: 'Roboto Slab', serif;
-  font-size: 3em;
-  color: #000;
+  font-size: 2.5em;
+  color: #2d3436;
   margin-bottom: 40px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Boksene */
-.tracker {
+.task-box {
   background: #ffffff;
-  border: 1px solid #000000;
-  border-radius: 12px;
+  border: none;
+  border-radius: 16px;
   padding: 24px;
-  margin: 40px auto;
+  margin: 20px auto;
   max-width: 500px;
-  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.tracker:hover {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+.task-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.task-box p {
+  margin: 10px 0;
+  font-size: 1.1em;
+  color: #636e72;
 }
 
 /* Knappene */
 button {
-  background-color: #3e9e44;
+  background-color: #00b894;
   color: white;
-  padding: 24px 36px;
+  padding: 12px 24px;
   font-size: 1em;
-  font-weight: bold;
-  text-transform: uppercase;
+  font-weight: 600;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  margin-top: 20px;
-  transition: background-color 0.3s, transform 0.1s, box-shadow 0.2s;
+  margin: 10px 5px;
+  transition: all 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 button:hover:not(:disabled) {
-  background-color: #3e9e44;
+  background-color: #00a884;
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 button:active:not(:disabled) {
-  transform: scale(0.96);
+  transform: scale(0.98);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 button:disabled {
-  background-color: #ccc;
+  background-color: #b2bec3;
   cursor: not-allowed;
   box-shadow: none;
 }
+
+/* Spesifikk styling for reset-knappen */
+button[onclick="resetTracker()"] {
+  background-color: #d63031;
+  margin-top: 30px;
+}
+
+button[onclick="resetTracker()"]:hover {
+  background-color: #c0392b;
+}   
