@@ -130,21 +130,24 @@
    function resetTracker() {
   localStorage.removeItem('lastClippedDate');
   localStorage.removeItem('lastBeardTrimDate');
-  localStorage.removeItem('stretchStatus'); // Viktig!
+  localStorage.removeItem('stretchStatus');
 
   // Oppdater visningen
   updateHaircutDisplay();
   updateBeardDisplay();
-  updateStretchDisplay(); // Viktig!
+  updateStretchDisplay();
+
+  // Aktiver knappene igjen manuelt
+  const haircutButton = document.getElementById('haircutButton');
+  haircutButton.disabled = false;
+  haircutButton.style.backgroundColor = '#4CAF50';
+
+  const beardButton = document.getElementById('beardButton');
+  beardButton.disabled = false;
+  beardButton.style.backgroundColor = '#4CAF50';
+
+  const stretchButton = document.getElementById('stretchButton');
+  stretchButton.disabled = false;
+  stretchButton.style.backgroundColor = '#4CAF50';
 }
-      
-      // Aktiver knappene igjen manuelt
-      const haircutButton = document.getElementById('haircutButton');
-      haircutButton.disabled = false;
-      haircutButton.style.backgroundColor = '#4CAF50';
-      
-      const beardButton = document.getElementById('beardButton');
-      beardButton.disabled = false;
-      beardButton.style.backgroundColor = '#4CAF50';
-    }    
 
