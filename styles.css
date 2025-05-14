@@ -24,7 +24,7 @@ h1 {
 /* Boksene */
 .task-box {
   background: #ffffff;
-  border: none;
+  border: 2px solid #2d3436;
   border-radius: 16px;
   padding: 24px;
   margin: 20px auto;
@@ -46,7 +46,7 @@ h1 {
 
 /* Knappene */
 button {
-  background-color: #00b894;
+  background-color: #45AC35;
   color: white;
   padding: 12px 24px;
   font-size: 1em;
@@ -60,7 +60,7 @@ button {
 }
 
 button:hover:not(:disabled) {
-  background-color: #00a884;
+  background-color: #3a8f2d;
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
