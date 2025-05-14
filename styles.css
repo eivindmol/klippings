@@ -23,15 +23,17 @@ h1 {
 
 /* Boksene */
 .task-box {
-  background: #ffffff;
-  border: 2px solid #2d3436;
-  border-radius: 16px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
   padding: 20px;
-  margin: 25px auto;
-  width: 90%;
-  max-width: 500px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 20px 0;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-height: 150px; /* Fast høyde som er høy nok for all tekst */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .task-box:hover {
