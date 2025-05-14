@@ -70,12 +70,12 @@ button {
   max-width: 250px;
 }
 
-button:hover:not(:disabled) {
+/*button:hover:not(:disabled) {
   background-color: #3a8f2d;
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
-
+*/
 button:active:not(:disabled) {
   transform: scale(0.98);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
