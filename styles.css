@@ -31,7 +31,7 @@ h1 {
   width: 90%;
   max-width: 500px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-  min-height: 150px;
+  min-height: 190px;
   display: flex;
   flex-direction: column;
   justify-content: center;
