@@ -42,7 +42,11 @@ h1 {
 .task-box p {
   margin: 10px 0;
   font-size: 1em;
-  color: #636e72;
+  color: #636e72 !important;
+}
+
+#lastClipped, #nextHaircut, #lastBeardTrim, #nextBeardTrim, #stretchStatus {
+  color: #636e72 !important;
 }
 
 /* Knappene */
