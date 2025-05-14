@@ -127,15 +127,16 @@
     updateStretchDisplay();
 
 
-    function resetTracker() {
-      localStorage.removeItem('lastClippedDate');
-      localStorage.removeItem('lastBeardTrimDate');
-        localStorage.removeItem('stretchStatus');
-      
-      // Oppdater visningen
-      updateHaircutDisplay();
-      updateBeardDisplay();
-        updateStretchDisplay();
+   function resetTracker() {
+  localStorage.removeItem('lastClippedDate');
+  localStorage.removeItem('lastBeardTrimDate');
+  localStorage.removeItem('stretchStatus'); // Viktig!
+
+  // Oppdater visningen
+  updateHaircutDisplay();
+  updateBeardDisplay();
+  updateStretchDisplay(); // Viktig!
+}
       
       // Aktiver knappene igjen manuelt
       const haircutButton = document.getElementById('haircutButton');
