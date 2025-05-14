@@ -124,6 +124,8 @@
     // Oppdater alt når siden lastes
     updateHaircutDisplay();
     updateBeardDisplay();
+    updateStretchDisplay();
+
 
     function resetTracker() {
       localStorage.removeItem('lastClippedDate');
