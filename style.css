@@ -1,5 +1,4 @@
-<head>
-<style>
+
     /* Generell stil */
     body {
       font-family: 'Courier New', Courier, monospace;
@@ -8,8 +7,7 @@
       text-align: center;
       color: #333;
     }
-</style>
-</head>
+
    
 /* Tracker bokser */
     .tracker {
@@ -76,4 +74,3 @@ button:disabled {
 
     /* Google Font import */
     @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&family=Poppins:wght@400&display=swap');
-</head>
