@@ -1,3 +1,10 @@
+// Definer kategorier
+const categories = [
+    { name: 'Haircut', interval: 30 },
+    { name: 'BeardTrim', interval: 14 },
+    { name: 'Stretch', interval: 1 }
+];
+
 // Funksjoner for å lagre og hente data fra localStorage
 function saveData(key, value) {
     localStorage.setItem(key, value);
@@ -25,130 +32,73 @@ function calculateNextDate(lastDate, days) {
 // Funksjon for å sjekke om en knapp skal være deaktivert
 function shouldDisableButton(lastActionDate) {
     if (!lastActionDate) return false;
-    
+
     const lastDate = new Date(lastActionDate);
     const now = new Date();
-    
+
     // Sjekk om det er samme dag
     return lastDate.getDate() === now.getDate() &&
            lastDate.getMonth() === now.getMonth() &&
            lastDate.getFullYear() === now.getFullYear();
 }
 
-// Funksjon for å oppdatere knappenes tilstand
+// Oppdater visning for en spesifikk kategori
+function updateDisplay(category, daysInterval) {
+    const lastAction = getData(`last${category}`);
+    const lastElement = document.getElementById(`last${category}`);
+    const nextElement = document.getElementById(`next${category}`);
+
+    if (lastAction) {
+        const lastDate = new Date(lastAction);
+        const nextDate = calculateNextDate(lastDate, daysInterval);
+
+        lastElement.textContent = `Sist ${category.toLowerCase()}: ${formatDate(lastDate)}`;
+        lastElement.style.color = '#000000';
+        nextElement.textContent = `Neste ${category.toLowerCase()}: ${formatDate(nextDate)}`;
+        nextElement.style.color = '#000000';
+    } else {
+        lastElement.textContent = `Ingen ${category.toLowerCase()} registrert enda.`;
+        lastElement.style.color = '#45AC35';
+        nextElement.textContent = '';
+    }
+}
+
+// Håndter dagens handling for en kategori
+function handleToday(category) {
+    const today = new Date();
+    saveData(`last${category}`, today.toISOString());
+    const interval = categories.find(c => c.name === category).interval;
+    updateDisplay(category, interval);
+    updateButtonStates();
+}
+
+// Oppdater knappenes tilstand
 function updateButtonStates() {
-    const lastHaircut = getData('lastHaircut');
-    const lastBeardTrim = getData('lastBeardTrim');
-    const lastStretch = getData('lastStretch');
-    
-    document.getElementById('haircutButton').disabled = shouldDisableButton(lastHaircut);
-    document.getElementById('beardButton').disabled = shouldDisableButton(lastBeardTrim);
-    document.getElementById('stretchButton').disabled = shouldDisableButton(lastStretch);
+    categories.forEach(category => {
+        const lastAction = getData(`last${category.name}`);
+        const button = document.getElementById(`${category.name.toLowerCase()}Button`);
+        button.disabled = shouldDisableButton(lastAction);
+    });
 }
 
-// Hårklipp funksjoner
-function clipToday() {
-    const today = new Date();
-    saveData('lastHaircut', today.toISOString());
-    updateHaircutDisplay();
-    updateButtonStates();
-}
-
-function updateHaircutDisplay() {
-    const lastHaircut = getData('lastHaircut');
-    const lastClippedElement = document.getElementById('lastClipped');
-    const nextHaircutElement = document.getElementById('nextHaircut');
-    
-    if (lastHaircut) {
-        const lastDate = new Date(lastHaircut);
-        const nextDate = calculateNextDate(lastDate, 3); // 30 dager mellom hårklipp
-        
-        lastClippedElement.textContent = `Sist klippet: ${formatDate(lastDate)}`;
-        lastClippedElement.style.color = '#000000';
-        nextHaircutElement.textContent = `Neste klipp: ${formatDate(nextDate)}`;
-        nextHaircutElement.style.color = '#000000';
-    } else {
-        lastClippedElement.textContent = 'Ingen klipp registrert enda.';
-        lastClippedElement.style.color = '#45AC35';
-        nextHaircutElement.textContent = '';
-    }
-}
-
-// Dynetrekk funksjoner
-function trimBeardToday() {
-    const today = new Date();
-    saveData('lastBeardTrim', today.toISOString());
-    updateBeardDisplay();
-    updateButtonStates();
-}
-
-function updateBeardDisplay() {
-    const lastBeardTrim = getData('lastBeardTrim');
-    const lastBeardElement = document.getElementById('lastBeardTrim');
-    const nextBeardElement = document.getElementById('nextBeardTrim');
-    
-    if (lastBeardTrim) {
-        const lastDate = new Date(lastBeardTrim);
-        const nextDate = calculateNextDate(lastDate, 14); // 7 dager mellom dynetrekk
-        
-        lastBeardElement.textContent = `Sist skiftet dynetrekk: ${formatDate(lastDate)}`;
-        lastBeardElement.style.color = '#000000';
-        nextBeardElement.textContent = `Neste dynetrekk: ${formatDate(nextDate)}`;
-        nextBeardElement.style.color = '#000000';
-    } else {
-        lastBeardElement.textContent = 'Ingen dynetrekkskift registrert enda.';
-        lastBeardElement.style.color = '#45AC35';
-        nextBeardElement.textContent = '';
-    }
-}
-
-// Strekk funksjoner
-function stretchToday() {
-    const today = new Date();
-    saveData('lastStretch', today.toISOString());
-    updateStretchDisplay();
-    updateButtonStates();
-}
-
-function updateStretchDisplay() {
-    const lastStretch = getData('lastStretch');
-    const stretchStatusElement = document.getElementById('stretchStatus');
-    
-    if (lastStretch) {
-        const lastDate = new Date(lastStretch);
-        const today = new Date();
-        
-        // Sjekk om det er samme dag
-        if (lastDate.getDate() === today.getDate() &&
-            lastDate.getMonth() === today.getMonth() &&
-            lastDate.getFullYear() === today.getFullYear()) {
-            stretchStatusElement.textContent = 'Bra, dette er gjort i dag. Husk å gjøre det igjen i morgen';
-        } else {
-            stretchStatusElement.textContent = `Sist strekket: ${formatDate(lastDate)}`;
-        }
-    } else {
-        stretchStatusElement.textContent = 'Ingen strekk registrert enda.';
-    }
-}
-
-// Reset funksjon
+// Nullstill alle data og oppdater visning
 function resetTracker() {
     if (confirm('Er du sikker på at du vil nullstille alt?')) {
         localStorage.clear();
-        updateHaircutDisplay();
-        updateBeardDisplay();
-        updateStretchDisplay();
+        categories.forEach(category => {
+            updateDisplay(category.name, category.interval);
+        });
         updateButtonStates();
     }
 }
 
 // Initialiser visning når siden lastes
 document.addEventListener('DOMContentLoaded', () => {
-    updateHaircutDisplay();
-    updateBeardDisplay();
-    updateStretchDisplay();
+    categories.forEach(category => {
+        updateDisplay(category.name, category.interval);
+    });
     updateButtonStates();
-    
+
     // Sjekk knappenes tilstand hvert minutt
     setInterval(updateButtonStates, 60000);
 });
