@@ -101,6 +101,25 @@ function updateBeardDisplay() {
         nextBeardElement.textContent = '';
     }
 }
+//bad nede funksjoner
+function vaskBadnedeToday() {
+  const today = new Date();
+  const nextDate = new Date(today);
+  nextDate.setDate(today.getDate() + 14); // For eksempel: vask hver 14. dag
+
+  // Lagre dato i LocalStorage
+  localStorage.setItem('badNedeLast', today.toISOString());
+  localStorage.setItem('badNedeNext', nextDate.toISOString());
+
+  // Oppdater visning
+  document.getElementById('lastBadNedeVask').textContent = `Vasket: ${today.toLocaleDateString()}`;
+  document.getElementById('nextBadNedeVask').textContent = `Neste vask: ${nextDate.toLocaleDateString()}`;
+
+  // Deaktiver knapp
+  const button = document.getElementById('BadBedeButton');
+  button.disabled = true;
+  button.classList.add('disabled');
+}
 
 // Strekk funksjoner
 function stretchToday() {
@@ -141,6 +160,26 @@ function resetTracker() {
         updateButtonStates();
     }
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+  const last = localStorage.getItem('badNedeLast');
+  const next = localStorage.getItem('badNedeNext');
+
+  if (last) {
+    document.getElementById('lastBadNedeVask').textContent = `Vasket: ${new Date(last).toLocaleDateString()}`;
+  }
+  if (next) {
+    document.getElementById('nextBadNedeVask').textContent = `Neste vask: ${new Date(next).toLocaleDateString()}`;
+
+    // Deaktiver knappen hvis allerede vasket
+    const button = document.getElementById('BadBedeButton');
+    if (button) {
+      button.disabled = true;
+      button.classList.add('disabled');
+    }
+  }
+});
+
 
 // Initialiser visning når siden lastes
 document.addEventListener('DOMContentLoaded', () => {
