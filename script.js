@@ -165,6 +165,34 @@ function vaskBadnedeToday() {
   button.classList.add('disabled');
 }
 
+function updateBadNedeDisplay() {
+    const last = localStorage.getItem('badNedeLast');
+    const next = localStorage.getItem('badNedeNext');
+    const lastElem = document.getElementById('lastBadNedeVask');
+    const nextElem = document.getElementById('nextBadNedeVask');
+    const button = document.getElementById('BadBedeButton');
+
+    if (last) {
+        lastElem.textContent = `Vasket: ${new Date(last).toLocaleDateString()}`;
+    } else {
+        lastElem.textContent = 'Ingen vask registrert enda.';
+    }
+
+    if (next) {
+        nextElem.textContent = `Neste vask: ${new Date(next).toLocaleDateString()}`;
+        if (button) {
+            button.disabled = true;
+            button.classList.add('disabled');
+        }
+    } else {
+        nextElem.textContent = '';
+        if (button) {
+            button.disabled = false;
+            button.classList.remove('disabled');
+        }
+    }
+}
+
 // Strekk funksjoner
 function stretchToday() {
     const today = new Date();
