@@ -1,3 +1,47 @@
+document.addEventListener('DOMContentLoaded', () => {
+  // Sjekk om URL inneholder "--" som indikerer preview deploy
+  if (window.location.hostname.includes('--')) {
+    const warning = document.createElement('div');
+    warning.textContent = '⚠️ Du bruker en preview-deploy. LocalStorage lagres separat her, så data kan forsvinne mellom deploys.';
+    warning.style.backgroundColor = '#ffcc00';
+    warning.style.color = '#000';
+    warning.style.padding = '10px';
+    warning.style.textAlign = 'center';
+    warning.style.fontWeight = 'bold';
+    warning.style.position = 'fixed';
+    warning.style.top = '0';
+    warning.style.left = '0';
+    warning.style.width = '100%';
+    warning.style.zIndex = '9999';
+    document.body.style.paddingTop = '50px';  // unngå at innhold skjules bak advarsel
+    document.body.prepend(warning);
+  }
+
+  // Din eksisterende kode:
+  const last = localStorage.getItem('badNedeLast');
+  const next = localStorage.getItem('badNedeNext');
+
+  if (last) {
+    document.getElementById('lastBadNedeVask').textContent = `Vasket: ${new Date(last).toLocaleDateString()}`;
+  }
+  if (next) {
+    document.getElementById('nextBadNedeVask').textContent = `Neste vask: ${new Date(next).toLocaleDateString()}`;
+
+    const button = document.getElementById('BadBedeButton');
+    if (button) {
+      button.disabled = true;
+      button.classList.add('disabled');
+    }
+  }
+
+  updateHaircutDisplay();
+  updateBeardDisplay();
+  updateStretchDisplay();
+  updateButtonStates();
+  setInterval(updateButtonStates, 60000);
+});
+
+
 // Funksjoner for å lagre og hente data fra localStorage
 function saveData(key, value) {
     localStorage.setItem(key, value);
