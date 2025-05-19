@@ -230,6 +230,7 @@ function resetTracker() {
         updateBeardDisplay();
         updateStretchDisplay();
         updateButtonStates();
+       updateBadNedeDisplay(); // ← legg til denne linjen
     }
 }
 
