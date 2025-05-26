@@ -175,7 +175,7 @@ function updateBadNedeDisplay() {
     if (last) {
         lastElem.textContent = `Vasket: ${new Date(last).toLocaleDateString()}`;
     } else {
-        lastElem.textContent = 'Ingen vask registrert enda.';
+        lastElem.textContent = 'Ingen vask nede registrert enda.';
     }
 
     if (next) {
