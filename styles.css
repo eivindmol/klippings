@@ -43,6 +43,13 @@ h1 {
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }*/
 
+.task-box.done {
+  background-color: #d4edda; /* lys grønn */
+  border: 1px solid #28a745; /* grønn kant */
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
 .task-box p {
   margin: 5px 0;
   font-size: 1em;
