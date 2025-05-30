@@ -74,6 +74,16 @@ function updateButtonStates() {
     const lastDate = getData(key);
     const button = document.getElementById(buttonId);
     if (button) button.disabled = shouldDisableButton(lastDate);
+
+      // Finn parent med klasse task-box
+    const taskBox = button.closest('.task-box');
+    if (taskBox) {
+      if (button.disabled) {
+        taskBox.classList.add('done');
+      } else {
+        taskBox.classList.remove('done');
+      }
+      }
   });
 }
 
