@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateStretchDisplay();
   updateBadNedeDisplay();
   updateButtonStates();
+  updateHandkleDisplay();
 
   // Sjekk knapper hvert minutt for å reaktivere ved midnatt
   setInterval(updateButtonStates, 60000);
@@ -208,5 +209,6 @@ function resetTracker() {
     updateBadNedeDisplay();
     updateStretchDisplay();
     updateButtonStates();
+    updateHandkleDisplay();  
   }
 }
