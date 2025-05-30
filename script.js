@@ -65,8 +65,8 @@ function updateButtonStates() {
     { key: 'lastHaircut', buttonId: 'haircutButton' },
     { key: 'lastBeardTrim', buttonId: 'beardButton' },
     { key: 'lastStretch', buttonId: 'stretchButton' },
-    { key: 'lastBadNede', buttonId: 'BadBedeButton' }
-    { key: 'lastHandkleSkift', buttonId: 'lastHandkleSkift' }
+    { key: 'lastBadNede', buttonId: 'BadBedeButton' },
+    { key: 'lastHandkleSkift', buttonId: 'handkleButton' }
   ];
 
   mappings.forEach(({ key, buttonId }) => {
