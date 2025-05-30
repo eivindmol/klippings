@@ -44,8 +44,8 @@ h1 {
 }*/
 
 .task-box.done {
-  background-color: #d4edda; /* lys grønn */
-  border: 1px solid #28a745; /* grønn kant */
+  background-color: #E7FAE3; /* lys grønn */
+  /* border: 1px solid #28a745;  grønn kant */
   border-radius: 5px;
   transition: background-color 0.3s ease;
 }
