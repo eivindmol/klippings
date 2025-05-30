@@ -66,6 +66,7 @@ function updateButtonStates() {
     { key: 'lastBeardTrim', buttonId: 'beardButton' },
     { key: 'lastStretch', buttonId: 'stretchButton' },
     { key: 'lastBadNede', buttonId: 'BadBedeButton' }
+    { key: 'lastHandkleSkift', buttonId: 'lastHandkleSkift' }
   ];
 
   mappings.forEach(({ key, buttonId }) => {
@@ -171,6 +172,32 @@ function updateStretchDisplay() {
     elem.textContent = 'Ingen strekk registrert enda.';
   }
 }
+
+// 🧘‍♂️ ny knapp
+function skiftHandkleToday() {
+    const today = new Date();
+    saveData('lastHandkleSkift', today.toISOString());
+    updateHandkleDisplay();
+    updateButtonStates();
+}
+
+function updateHandkleDisplay() {
+    const lastHandkle = getData('lastHandkleSkift');
+    const lastElem = document.getElementById('lastHandkleSkift');
+    const nextElem = document.getElementById('nextHandkleSkift');
+
+    if (lastHandkle) {
+        const lastDate = new Date(lastHandkle);
+        const nextDate = calculateNextDate(lastDate, 7); // Juster antall dager
+
+        lastElem.textContent = `Sist skiftet håndkle: ${formatDate(lastDate)}`;
+        nextElem.textContent = `Neste skift: ${formatDate(nextDate)}`;
+    } else {
+        lastElem.textContent = 'Ingen håndkleskift registrert enda.';
+        nextElem.textContent = '';
+    }
+}
+
 
 // 🔄 Nullstill alt
 function resetTracker() {
