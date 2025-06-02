@@ -151,7 +151,7 @@ function updateBadNedeDisplay() {
   if (lastBad) {
     const lastDate = new Date(lastBad);
     const nextDate = calculateNextDate(lastDate, 14);
-    lastElem.textContent = `Vasket: ${formatDate(lastDate)}`;
+    lastElem.textContent = `Bad nede vasket: ${formatDate(lastDate)}`;
     nextElem.textContent = `Neste vask: ${formatDate(nextDate)}`;
   } else {
     lastElem.textContent = 'Ingen vask nede registrert enda.';
@@ -184,7 +184,7 @@ function updateStretchDisplay() {
   }
 }
 
-// 🧘‍♂️ ny knapp
+// 🧘‍♂️ HÅndkle knapp
 function skiftHandkleToday() {
     const today = new Date();
     saveData('lastHandkleSkift', today.toISOString());
